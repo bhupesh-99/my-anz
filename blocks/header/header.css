@@ -266,3 +266,36 @@ header nav .nav-sections ul > li > ul > li {
 header nav .nav-tools {
   grid-area: tools;
 }
+
+header nav .nav-tools .login-btn {
+    background: 'blue';
+    /* width: '50px'; */
+    vertical-align: top;
+    display: inline-block;
+    background: #007dba;
+    padding: 8px 12px;
+    margin: 11px 0 11px 4px;
+    box-shadow: rgba(0, 0, 0, .3) 0 2px 2px 0;
+    border: 0;
+    height: 38px;
+    text-decoration: none;
+}
+
+header nav .nav-tools .login-list {
+    display: none;
+    position: absolute;
+    right: 14px;
+    top: 50px;
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, .3) 0 2px 2px 0;
+    z-index: 12;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+header nav .nav-tools .login-list ul li a {
+    padding: 11px 18px;
+    color: #0072ac;
+    display: block;
+    font-size: .875rem;
+}

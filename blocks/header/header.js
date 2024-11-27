@@ -103,6 +103,37 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   }
 }
 
+function createNavTools(navToolsWrapper) {
+  Object.assign(navToolsWrapper.style, {
+    display: 'flex',
+    'flex-direction': 'row',
+    'align-items': 'center'
+  });
+  createDropdownButton(navToolsWrapper);
+}
+
+function createDropdownButton(parentEl) {
+  const dd = document.createElement('div');
+  const ddButton = document.createElement('button');
+  ddButton.type = 'button';
+  ddButton.textContent = '';
+  ddButton.addEventListener('click', (event) => {
+    console.log(event.target);
+  });
+  ddButton.classList.add('login-btn');
+  const iconSpan = document.createElement('span');
+  iconSpan.classList.add('icon', 'icon_arrow_down');
+  ddButton.appendChild(iconSpan);
+  dd.appendChild(ddButton);
+
+  const loginList = document.createElement('div');
+  loginList.classList.add('login-list');
+  const navToolList = parentEl.querySelector(':scope > ul');
+  loginList.appendChild(navToolList);
+  dd.appendChild(loginList);
+  parentEl.appendChild(dd);
+}
+
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -144,6 +175,13 @@ export default async function decorate(block) {
         }
       });
     });
+  }
+
+  const navTools = nav.querySelector('.nav-tools');
+  if(navTools) {
+    debugger;
+    const navToolsWrapper = navTools.querySelector(':scope > .default-content-wrapper');
+    createNavTools(navToolsWrapper);
   }
 
   // hamburger for mobile

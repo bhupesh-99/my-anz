@@ -1,0 +1,11 @@
+main .section.cookiepolicy-container {
+    background-color: var(--background-color-2);
+    padding: 10px;
+
+    .cookiepolicy-wrapper {
+        width: 100%;
+        max-width: unset;
+        padding: unset;
+    }
+}
+

@@ -36,7 +36,7 @@
 }
 
 @font-face {
-    font-family: 'anz-icons';
+    font-family: anz-icons;
     src: url('../fonts/anz-icons.woff') format('woff');
     font-display: swap;
 }

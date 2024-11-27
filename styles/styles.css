@@ -217,11 +217,10 @@ main img {
 }
 
 .icon {
-  display: inline-block;
-  /* height: 24px;
+/* height: 24px;
   width: 24px; */
 
-  font-family: anz-icons;
+  font-family: anz-icons, sans-serif;
   display: inline-block;
   vertical-align: middle;
   line-height: 1;
@@ -230,12 +229,12 @@ main img {
   speak: none;
   text-decoration: none;
   text-transform: none;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon_arrow_down:before {
+.icon-arrow-down::before {
     content: "\f102";
 }
 

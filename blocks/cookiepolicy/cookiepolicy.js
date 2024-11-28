@@ -1,4 +1,4 @@
-import { removeEmptyElements } from '../../utils/utils.js';
+import { removeEmptyElements, waitForElementDefinition } from '../../utils/utils.js';
 
 function createCookiePolicyInfo(elm) {
   const topContentWrapper = document.createElement('div');
@@ -9,11 +9,31 @@ function createCookiePolicyInfo(elm) {
   return topContentWrapper;
 }
 
-function createCookiePolicyTypes(elm) {
+async function createCookiePolicyTypes(elm) {
   const bottomContentWrapper = document.createElement('div');
   bottomContentWrapper.classList.add('cookie-policy-types');
   const bottomContentFragment = document.createDocumentFragment();
-  elm.forEach((element) => bottomContentFragment.appendChild(element));
+  await waitForElementDefinition('cookie-selector').catch((err) => console.error('Not FFound::: ', err));
+
+  const groupedElements = elm.reduce((groupArr, el) => {
+    const tag = el.tagName.toLowerCase();
+    if (tag === 'h3') {
+      groupArr.push([el]);
+    } else if (tag === 'p' && groupArr.length > 0) {
+      groupArr[groupArr.length - 1].push(el);
+    }
+    return groupArr;
+  }, []);
+
+  groupedElements.forEach((elements) => {
+    const cookieSelector = document.createElement('cookie-selector');
+    cookieSelector.setAttribute('checked', 'true');
+    cookieSelector.setAttribute('disabled', 'false');
+    cookieSelector.appendChild(elements[0]);
+    cookieSelector.appendChild(elements[1]);
+    bottomContentFragment.appendChild(cookieSelector);
+  });
+
   bottomContentWrapper.appendChild(bottomContentFragment);
   return bottomContentWrapper;
 }
@@ -27,7 +47,7 @@ function createCookiePolicyButtons(elm) {
   return buttonEl;
 }
 
-export default function decorate(block) {
+export default async function decorate(block) {
   if (block.children) {
     const contentElWrapper = block.children[0];
     const buttonElWrapper = block.children[1];
@@ -38,14 +58,10 @@ export default function decorate(block) {
     if (h2Index !== -1) {
       const topContent = elementsArray.slice(0, h2Index);
       const bottomContent = elementsArray.slice(h2Index, elementsArray.length);
-
       const cookiePolicyInfoEl = createCookiePolicyInfo(topContent);
-      const cookiePolicyTypeEl = createCookiePolicyTypes(bottomContent);
-
+      const cookiePolicyTypeEl = await createCookiePolicyTypes(bottomContent);
       block.appendChild(cookiePolicyInfoEl);
       block.appendChild(cookiePolicyTypeEl);
-    } else {
-      console.log('element not found.');
     }
 
     const buttonEl = createCookiePolicyButtons(buttonElWrapper);

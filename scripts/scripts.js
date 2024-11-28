@@ -91,12 +91,33 @@ async function loadEager(doc) {
   }
 }
 
+async function loadComponent(componentName, scriptPath) {
+  try {
+    await import(scriptPath);
+    // eslint-disable-next-line no-console
+    console.log(`${componentName} component loaded successfully.`);
+  } catch (error) {
+    console.error(`Failed to load ${componentName} component:`, error);
+  }
+}
+
+function loadAllComponents() {
+  // Load all Web Components asynchronously
+  const components = [
+    { name: 'cookie-selector', path: `${window.hlx.codeBasePath}/components/cookie-selector/cookie-selector.js` },
+  ];
+  components.forEach((component) => {
+    loadComponent(component.name, component.path);
+  });
+}
+
 /**
  * Loads everything that doesn't need to be delayed.
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
+  loadAllComponents();
   await loadSections(main);
 
   const { hash } = window.location;

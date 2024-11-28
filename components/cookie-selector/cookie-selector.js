@@ -40,6 +40,7 @@ class CookieSelector extends HTMLElement {
           align-items: center;
           justify-content: space-between;
           border: 1px solid #e0e0e0;
+          height: 100%;
         }
 
         .content {

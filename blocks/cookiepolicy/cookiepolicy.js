@@ -25,14 +25,49 @@ async function createCookiePolicyTypes(elm) {
     return groupArr;
   }, []);
 
-  groupedElements.forEach((elements) => {
+  console.log(groupedElements);
+
+  groupedElements.forEach(elements => {
+    const el = document.createElement('div');
+    el.classList.add('cookie-list');
     const cookieSelector = document.createElement('cookie-selector');
     cookieSelector.setAttribute('checked', 'true');
     cookieSelector.setAttribute('disabled', 'false');
     cookieSelector.appendChild(elements[0]);
     cookieSelector.appendChild(elements[1]);
-    bottomContentFragment.appendChild(cookieSelector);
+    el.appendChild(cookieSelector);
+    bottomContentFragment.appendChild(el);
   });
+
+  // const cookieListItems = [];
+  // let el = null;
+  // groupedElements.reduce((array, elements, index) => {
+  //   const cookieSelector = document.createElement('cookie-selector');
+  //   cookieSelector.setAttribute('checked', 'true');
+  //   cookieSelector.setAttribute('disabled', 'false');
+  //   cookieSelector.appendChild(elements[0]);
+  //   cookieSelector.appendChild(elements[1]);
+    
+  //   if(index % 2 === 0) {
+  //     el = document.createElement('div');
+  //     el.classList.add('cookie-list');
+  //     el.appendChild(cookieSelector);
+  //     array.push(el);
+  //   } else if(index % 2 !== 0 && el) {
+  //     el.appendChild(cookieSelector);
+  //   } else if(!el){
+  //     el = document.createElement('div');
+  //     el.classList.add('cookie-list');
+  //     el.appendChild(cookieSelector);
+  //     array.push(el);
+  //     el = null;
+  //   }
+  //   return array;
+  // }, cookieListItems);
+
+  // cookieListItems.forEach(element => {
+  //   bottomContentFragment.appendChild(element);
+  // });
 
   bottomContentWrapper.appendChild(bottomContentFragment);
   return bottomContentWrapper;

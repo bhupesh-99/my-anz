@@ -9,3 +9,12 @@ main .section.cookiepolicy-container {
     }
 }
 
+.cookie-policy-types {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+} 
+
+.cookie-list {
+    height: 100%;
+}
+

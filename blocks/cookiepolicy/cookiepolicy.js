@@ -27,7 +27,7 @@ async function createCookiePolicyTypes(elm) {
 
   console.log(groupedElements);
 
-  groupedElements.forEach(elements => {
+  groupedElements.forEach((elements) => {
     const el = document.createElement('div');
     el.classList.add('cookie-list');
     const cookieSelector = document.createElement('cookie-selector');
@@ -47,7 +47,7 @@ async function createCookiePolicyTypes(elm) {
   //   cookieSelector.setAttribute('disabled', 'false');
   //   cookieSelector.appendChild(elements[0]);
   //   cookieSelector.appendChild(elements[1]);
-    
+
   //   if(index % 2 === 0) {
   //     el = document.createElement('div');
   //     el.classList.add('cookie-list');

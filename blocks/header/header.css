@@ -266,4 +266,10 @@ header .nav-wrapper {
   header nav .nav-tools {
     grid-area: tools;
   }
+
+  header nav .nav-tools > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   
